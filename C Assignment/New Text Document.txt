@@ -1,3 +1,6 @@
+ASSIGNMENT0
+
+
 1. Write a C program to add two integers and display the result
 2. Write a C program to find the area of a circle.
 3. Write a C program to convert temperature from Celsius to Fahrenheit using the
@@ -11,3 +14,52 @@ F = (C *9/5) + 32
 9. Write a C program to input the base and height of a triangle and calculate its area.
 10. Write a C program to input marks of five subjects, find the total marks, and calculate
 the percentage.
+
+
+ASSIGNMENT1
+
+1. Write a program to check whether a number is even or odd.
+
+2. Write a program to check given 3 digit number is pallindrome or not.
+
+3. Write a program to check whether a given year is a leap year.
+
+4. Write a program to check whether a given character is a vowel or consonant.
+
+5. Write a program to check whether a person is eligible to vote (age ≥ 18).
+
+6. Write a program to check whether a given character is uppercase or lowercase.
+7. Calculating total salary based on basic. If basic <=5000 da, ta and hra will be
+10%,20% and 25% respectively otherwise da, ta and hra will be 15%,25% and 30%
+respectively.
+
+
+ASSIGNMENT2
+
+1. Accept two numbers from user and an operator (+,-,/,*,%) based on that perform the
+desired operations.
+
+2. Accept three sides of a triangle from the user and determine whether the triangle is
+equilateral, isosceles, or scalene.
+
+3. Write a program to find greatest of three numbers using nested if-else.
+
+4. Ask the user to enter marks.
+Then show the result based on these rules:
+If marks are more than 75 → show "Distinction"
+If marks are more than 65 → show "First Class"
+If marks are more than 55 → show "Second Class"
+If marks are 40 or more → show "Pass Class"
+If marks are less than 40 → show "Fail"
+
+5. Accept the price from user. Ask the user if he is a student (user may say y or n). If he
+is a student and he has purchased more than 500 than discount is 20% otherwise
+discount is 10%.But if he is not a student then if he has purchased more than 600
+discount is 15% otherwise there is not discount.
+
+6. Accept a number and check if it is divisible by 3, 5, or both.
+(Print "Divisible by 3 but not by 5" or "Divisible by 5 but not by 3" or "Divisible by
+both" or” Divisible by None”)
+
+7. Accept the age and check if the person is:
+Child (age < 12),Teenager (12–19),Adult (20–59),Senior (60 and above)
