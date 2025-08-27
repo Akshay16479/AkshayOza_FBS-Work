@@ -150,3 +150,102 @@ Press 1.To check number is even or odd.
 6.To find sum of digits.
 
 
+ASSIGNMENT5
+
+1. Print a solid square pattern
+Input: n = 4
+Output:
+
+* * * *
+* * * *
+* * * *
+* * * *
+
+2. Print a right-angled triangle pattern
+Input: n = 5
+Output:
+*
+**
+***
+****
+*****
+
+3. Print an inverted right-angled triangle pattern
+Input: n = 5
+Output:
+
+*****
+****
+***
+**
+*
+
+4. Print
+
+4. pyramid pattern
+Input: n = 5
+Output:
+*
+**
+***
+****
+*****
+
+5. Print an inverted pyramid pattern
+Input: n = 5
+Output:
+
+*****
+****
+***
+**
+*
+
+6. Print a half pyramid using numbers
+Input: n = 5
+Output:
+1
+12
+123
+1234
+12345
+
+7. Print a Floyd’s triangle pattern
+Input: n = 4
+Output:
+1
+2 3
+4 5 6
+7 8 9 10
+
+8. Print a pattern of stars in diamond shape
+Input: n = 4
+Output:
+
+*
+**
+***
+****
+***
+**
+*
+
+9. Print a hollow square pattern
+Input: n = 4
+Output:
+
+* * * *
+* *
+* *
+* * * *
+
+10. Print a hollow square with diagonal pattern
+Input: n = 5
+Output:
+
+* * * * *
+* * *
+* * *
+* * *
+* * * * *
+
