@@ -1,0 +1,155 @@
+1. Write a SQL statement to insert a record as follows:
+Employees :
+
+mysql> insert into employees (employee_id, first_name, last_name, email, phone_number, hire_date, salary, department_id)
+    -> values (101, 'Akshay', 'Oza', 'akshay.oza@example.com', '9876543210', '2025-10-01', 55000.00, 10);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into employees
+    -> (employee_id, first_name, last_name, email, phone_number, hire_date, salary, department_id)
+    -> values
+    -> (102, 'Neha', 'Sharma', 'neha.sharma@example.com', '9876543211', '2025-09-15', 42000.50, 20),
+    -> (103, 'Rohit', 'Verma', 'rohit.verma@example.com', '9876543212', '2025-08-20', 60000.00, 30),
+    -> (104, 'Priya', 'Patel', 'priya.patel@example.com', '9876543213', '2025-07-10', 48000.75, 20),
+    -> (105, 'Karan', 'Singh', 'karan.singh@example.com', '9876543214', '2025-06-25', 70000.00, 40);
+Query OK, 4 rows affected (0.01 sec)
+
+
+mysql> select*from employees;
++-------------+------------+-----------+-------------------------+--------------+------------+----------+---------------+
+| employee_id | first_name | last_name | email                   | phone_number | hire_date  | salary   | department_id |
++-------------+------------+-----------+-------------------------+--------------+------------+----------+---------------+
+|         101 | Akshay     | Oza       | akshay.oza@example.com  | 9876543210   | 2025-10-01 | 55000.00 |            10 |
+|         102 | Neha       | Sharma    | neha.sharma@example.com | 9876543211   | 2025-09-15 | 42000.50 |            20 |
+|         103 | Rohit      | Verma     | rohit.verma@example.com | 9876543212   | 2025-08-20 | 60000.00 |            30 |
+|         104 | Priya      | Patel     | priya.patel@example.com | 9876543213   | 2025-07-10 | 48000.75 |            20 |
+|         105 | Karan      | Singh     | karan.singh@example.com | 9876543214   | 2025-06-25 | 70000.00 |            40 |
++-------------+------------+-----------+-------------------------+--------------+------------+----------+---------------+
+
+
+
+2. Write a SQL statement to insert 3 rows by a single insert statement.
+
+mysql> insert into department
+    -> (department_id,department_name,manager_id,location_id)
+    -> values(1,"Admin",106,21),
+    -> (2,"CRM",101,22),
+    -> (3,"IT",107,23),
+    -> (4,"HR",109,24);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> table department;
++---------------+-----------------+------------+-------------+
+| department_id | department_name | manager_id | location_id |
++---------------+-----------------+------------+-------------+
+|             1 | Admin           |        106 |          21 |
+|             2 | CRM             |        101 |          22 |
+|             3 | IT              |        107 |          23 |
+|             4 | HR              |        109 |          24 |
++---------------+-----------------+------------+-------------+
+
+
+3. Write a SQL statement to insert one row in jobs table to ensure that no duplicate
+value will be entered in the job_id column.
+
+mysql> insert into job
+    -> value
+    -> (107, 'Software Associate', 45000, 60000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> table job;
++--------+--------------------+------------+------------+
+| job_id | job_title          | min_salary | max_salary |
++--------+--------------------+------------+------------+
+|    101 | Software Engineer  |      40000 |      80000 |
+|    102 | Data Analyst       |      35000 |      70000 |
+|    103 | Project Manager    |      60000 |     120000 |
+|    104 | HR Executive       |      30000 |      60000 |
+|    107 | Software Associate |      45000 |      60000 |
++--------+--------------------+------------+------------+
+
+
+4. Write SQL statement to increment salary of each emp by 10%.
+
+mysql> update employee
+    -> set salary=salary+(salary*0.10);
+Query OK, 7 rows affected (0.02 sec)
+Rows matched: 7  Changed: 7  Warnings: 0
+
+mysql> table employee;
++-----+---------+---------+----------+--------+------------+
+| id  | name    | address | salary   | gender | j_date     |
++-----+---------+---------+----------+--------+------------+
+| 101 | Akshay  | pune    | 27500.00 | M      | 2025-04-19 |
+| 102 | Aksh    | mumbai  | 29700.00 | M      | 2024-09-11 |
+| 103 | Akshu   | pune    | 31900.00 | M      | 2024-09-11 |
+| 104 | Akshy   | mumbai  | 29700.00 | M      | 2025-04-19 |
+| 105 | Akshaay | pune    | 29700.00 | M      | 2025-04-19 |
+| 106 | ak      | mumbai  | 26400.00 | M      | 2024-09-11 |
+| 107 | baburao | nashik  | 23100.00 | M      | 2025-07-18 |
++-----+---------+---------+----------+--------+------------+
+
+
+5. Write a SQL statement to change the email column of employees table with 'not
+available' for those employees whose department_id is 20
+
+mysql>  update employees
+    -> set email="Not Available" where department_id=20 ;
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> table employees;
++-------------+------------+-----------+--------------------------+--------------+------------+----------+---------------+
+| employee_id | first_name | last_name | email                    | phone_number | hire_date  | salary   | department_id |
++-------------+------------+-----------+--------------------------+--------------+------------+----------+---------------+
+|         101 | Akshay     | Oza       | akshay.oza@example.com   | 9876543210   | 2025-10-01 | 55000.00 |            10 |
+|         102 | Neha       | Sharma    | Not Available            | 9876543211   | 2025-09-15 | 42000.50 |            20 |
+|         103 | Rohit      | Verma     | rohit.verma@example.com  | 9876543212   | 2025-08-20 | 60000.00 |            30 |
+|         104 | Priya      | Patel     | Not Available            | 9876543213   | 2025-07-10 | 48000.75 |            20 |
+|         105 | Karan      | Singh     | karan.singh@example.com  | 9876543214   | 2025-06-25 | 70000.00 |            40 |
+|         106 | Anita      | Rao       | Not Available            | 9876543215   | 2025-05-15 | 45000.00 |            20 |
+|         107 | Vikram     | Joshi     | Not Available            | 9876543216   | 2025-04-05 | 47000.00 |            20 |
+|         108 | Sonal      | Mehta     | sonal.mehta@example.com  | 9876543217   | 2025-03-20 | 52000.00 |            10 |
+|         109 | Rakesh     | Kumar     | rakesh.kumar@example.com | 9876543218   | 2025-02-10 | 58000.00 |            30 |
+|         110 | Tina       | Shah      | tina.shah@example.com    | 9876543219   | 2025-01-25 | 49000.00 |            40 |
++-------------+------------+-----------+--------------------------+--------------+------------+----------+---------------+
+
+
+6. Write a SQL statement to change the email column of employees table with 'not
+available' for those employees who belongs to the 'Purchasing' department.
+
+update employees
+set email = 'Not Available'
+where department_id = (
+    select department_id from department
+    where department_name = 'CRM'
+);
+mysql> table employees;
++-------------+------------+-----------+--------------------------+--------------+------------+----------+---------------+
+| employee_id | first_name | last_name | email                    | phone_number | hire_date  | salary   | department_id |
++-------------+------------+-----------+--------------------------+--------------+------------+----------+---------------+
+|         101 | Akshay     | Oza       | akshay.oza@example.com   | 9876543210   | 2025-10-01 | 55000.00 |             1 |
+|         102 | Neha       | Sharma    | Not Available            | 9876543211   | 2025-09-15 | 42000.50 |             2 |
+|         103 | Rohit      | Verma     | rohit.verma@example.com  | 9876543212   | 2025-08-20 | 60000.00 |             3 |
+|         104 | Priya      | Patel     | Not Available            | 9876543213   | 2025-07-10 | 48000.75 |             2 |
+|         105 | Karan      | Singh     | karan.singh@example.com  | 9876543214   | 2025-06-25 | 70000.00 |             4 |
+|         106 | Anita      | Rao       | Not Available            | 9876543215   | 2025-05-15 | 45000.00 |             2 |
+|         107 | Vikram     | Joshi     | Not Available            | 9876543216   | 2025-04-05 | 47000.00 |             2 |
+|         108 | Sonal      | Mehta     | sonal.mehta@example.com  | 9876543217   | 2025-03-20 | 52000.00 |             1 |
+|         109 | Rakesh     | Kumar     | rakesh.kumar@example.com | 9876543218   | 2025-02-10 | 58000.00 |             3 |
+|         110 | Tina       | Shah      | tina.shah@example.com    | 9876543219   | 2025-01-25 | 49000.00 |             4 |
++-------------+------------+-----------+--------------------------+--------------+------------+----------+---------------+
+
+
+
+7. Write a SQL statement to change the email and commission_pct column of
+employees table with 'not available' and 0.10 for all employees.
+
+update employees
+set email = 'Not Available', commission_pct = 0.10;
+
+
+
+
+
