@@ -50,3 +50,16 @@ group by month(order_date);
 
 15.b) COUNT()
 
+16. select c.name,c.id,count(*), avg(total_amount) 
+from orders o inner join customer c 
+on o.customer_id=c.id
+group by c.id,c.name 
+having count(*)>2; 
+
+17. SELECT p.product_name, p.product_id,
+    COUNT(*) 
+FROM sales s INNER JOIN  products p
+ON  s.product_id = p.product_id
+GROUP BY p.product_id, p.product_name
+HAVING  COUNT(*) > 50;
+
