@@ -1,0 +1,303 @@
+1. Write a query to display the names (first_name, last_name) using alias
+name “First Name", "Last Name.
+
+mysql> select first_name "First Name" ,last_name "Last Name"
+    -> from employees;
++------------+-----------+
+| First Name | Last Name |
++------------+-----------+
+| Akshay     | Oza       |
+| Neha       | Sharma    |
+| Rohit      | Verma     |
+| Priya      | Patel     |
+| Karan      | Singh     |
+| Anita      | Rao       |
+| Vikram     | Joshi     |
+| Sonal      | Mehta     |
+| Rakesh     | Kumar     |
+| Tina       | Shah      |
++------------+-----------+
+
+
+2. Write a query to get unique department ID from employee table.
+
+mysql> select distinct department_id from employees;
++---------------+
+| department_id |
++---------------+
+|             1 |
+|             2 |
+|             3 |
+|             4 |
++---------------+
+
+3. Write a query to get all employee details from the employee table order
+by first name, descending
+
+mysql> select * from employees
+    -> order by first_name desc;
++-------------+------------+-----------+--------------------------+--------------+------------+----------+---------------+
+| employee_id | first_name | last_name | email                    | phone_number | hire_date  | salary   | department_id |
++-------------+------------+-----------+--------------------------+--------------+------------+----------+---------------+
+|         107 | Vikram     | Joshi     | vikramjoshi@gmail.com    | 9876543216   | 2025-04-05 | 47000.00 |             2 |
+|         110 | Tina       | Shah      | tina.shah@example.com    | 9876543219   | 2025-01-25 | 49000.00 |             4 |
+|         108 | Sonal      | Mehta     | sonal.mehta@example.com  | 9876543217   | 2025-03-20 | 52000.00 |             1 |
+|         103 | Rohit      | Verma     | rohit.verma@example.com  | 9876543212   | 2025-08-20 | 60000.00 |             3 |
+|         109 | Rakesh     | Kumar     | rakesh.kumar@example.com | 9876543218   | 2025-02-10 | 58000.00 |             3 |
+|         104 | Priya      | Patel     | priyapatel@gmail.com     | 9876543213   | 2025-07-10 | 48000.75 |             2 |
+|         102 | Neha       | Sharma    | nehasharma@gmail.com     | 9876543211   | 2025-09-15 | 42000.50 |             2 |
+|         105 | Karan      | Singh     | karan.singh@example.com  | 9876543214   | 2025-06-25 | 70000.00 |             4 |
+|         106 | Anita      | Rao       | anita.rao@gmail.com      | 9876543215   | 2025-05-15 | 45000.00 |             2 |
+|         101 | Akshay     | Oza       | akshay.oza@example.com   | 9876543210   | 2025-10-01 | 55000.00 |             1 |
++-------------+------------+-----------+--------------------------+-------------------------------------------------------
+
+
+4. Write a query to get the names (first_name, last_name), salary, PF of all
+the employees (PF is calculated as 15% of salary).
+
+mysql> select first_name,last_name,salary,salary*15 as "PF"
+    -> from employees;
++------------+-----------+----------+------------+
+| first_name | last_name | salary   | PF         |
++------------+-----------+----------+------------+
+| Akshay     | Oza       | 55000.00 |  825000.00 |
+| Neha       | Sharma    | 42000.50 |  630007.50 |
+| Rohit      | Verma     | 60000.00 |  900000.00 |
+| Priya      | Patel     | 48000.75 |  720011.25 |
+| Karan      | Singh     | 70000.00 | 1050000.00 |
+| Anita      | Rao       | 45000.00 |  675000.00 |
+| Vikram     | Joshi     | 47000.00 |  705000.00 |
+| Sonal      | Mehta     | 52000.00 |  780000.00 |
+| Rakesh     | Kumar     | 58000.00 |  870000.00 |
+| Tina       | Shah      | 49000.00 |  735000.00 |
++------------+-----------+----------+------------+
+
+5. Write a query to get the employee ID, names (first_name, last_name),
+salary in ascending order of salary.
+
+mysql> select employee_id,first_name,last_name,salary
+    -> from employees
+    -> order by salary ;
++-------------+------------+-----------+----------+
+| employee_id | first_name | last_name | salary   |
++-------------+------------+-----------+----------+
+|         102 | Neha       | Sharma    | 42000.50 |
+|         106 | Anita      | Rao       | 45000.00 |
+|         107 | Vikram     | Joshi     | 47000.00 |
+|         104 | Priya      | Patel     | 48000.75 |
+|         110 | Tina       | Shah      | 49000.00 |
+|         108 | Sonal      | Mehta     | 52000.00 |
+|         101 | Akshay     | Oza       | 55000.00 |
+|         109 | Rakesh     | Kumar     | 58000.00 |
+|         103 | Rohit      | Verma     | 60000.00 |
+|         105 | Karan      | Singh     | 70000.00 |
++-------------+------------+-----------+----------+
+
+6. Write a query to get the total salaries payable to employees.
+
+mysql> select sum(salary) from employees;
++-------------+
+| sum(salary) |
++-------------+
+|   526001.25 |
++-------------+
+
+
+7. Write a query to get the maximum and minimum salary from employees
+table.
+
+mysql> select min(salary),max(salary) from employees;
++-------------+-------------+
+| min(salary) | max(salary) |
++-------------+-------------+
+|    42000.50 |    70000.00 |
++-------------+-------------+
+
+
+8. Write a query to get the average salary and number of employees in the
+employees table.
+
+mysql> select avg(salary),count(*) from employees;
++--------------+----------+
+| avg(salary)  | count(*) |
++--------------+----------+
+| 52600.125000 |       10 |
++--------------+----------+
+
+
+9. Write a query to get the number of employees working with the
+company.
+
+mysql> select count(*) "No.of Employees"from employees;
++-----------------+
+| No.of Employees |
++-----------------+
+|              10 |
++-----------------+
+
+
+10.Write a query to get the number of jobs available in the employees table
+
+mysql>  select distinct e.department_id,d.department_name
+    -> from employees e inner join department d
+    -> on e.department_id=d.department_id;
++---------------+-----------------+
+| department_id | department_name |
++---------------+-----------------+
+|             1 | Admin           |
+|             2 | CRM             |
+|             3 | IT              |
+|             4 | HR              |
++---------------+-----------------+
+
+
+11.Write a query to select first 10 records from a table.
+
+mysql> select * from employees
+    -> limit 10;
++-------------+------------+-----------+--------------------------+--------------+------------+----------+---------------+
+| employee_id | first_name | last_name | email                    | phone_number | hire_date  | salary   | department_id |
++-------------+------------+-----------+--------------------------+--------------+------------+----------+---------------+
+|         101 | Akshay     | Oza       | akshay.oza@example.com   | 9876543210   | 2025-10-01 | 55000.00 |             1 |
+|         102 | Neha       | Sharma    | nehasharma@gmail.com     | 9876543211   | 2025-09-15 | 42000.50 |             2 |
+|         103 | Rohit      | Verma     | rohit.verma@example.com  | 9876543212   | 2025-08-20 | 60000.00 |             3 |
+|         104 | Priya      | Patel     | priyapatel@gmail.com     | 9876543213   | 2025-07-10 | 48000.75 |             2 |
+|         105 | Karan      | Singh     | karan.singh@example.com  | 9876543214   | 2025-06-25 | 70000.00 |             4 |
+|         106 | Anita      | Rao       | anita.rao@gmail.com      | 9876543215   | 2025-05-15 | 45000.00 |             2 |
+|         107 | Vikram     | Joshi     | vikramjoshi@gmail.com    | 9876543216   | 2025-04-05 | 47000.00 |             2 |
+|         108 | Sonal      | Mehta     | sonal.mehta@example.com  | 9876543217   | 2025-03-20 | 52000.00 |             1 |
+|         109 | Rakesh     | Kumar     | rakesh.kumar@example.com | 9876543218   | 2025-02-10 | 58000.00 |             3 |
+|         110 | Tina       | Shah      | tina.shah@example.com    | 9876543219   | 2025-01-25 | 49000.00 |             4 |
++-------------+------------+-----------+--------------------------+--------------+------------+----------+---------------+
+
+
+12.Write a query to display the name (first_name, last_name) and salary for
+all employees whose salary is not in the range 45,000 and 55,000
+
+
+mysql> select first_name ,last_name ,salary from employees
+    -> where salary not between 45000 and 55000;
++------------+-----------+----------+
+| first_name | last_name | salary   |
++------------+-----------+----------+
+| Neha       | Sharma    | 42000.50 |
+| Rohit      | Verma     | 60000.00 |
+| Karan      | Singh     | 70000.00 |
+| Rakesh     | Kumar     | 58000.00 |
++------------+-----------+----------+
+
+
+13.Write a query to display the name (first_name, last_name) and
+department ID of all employees in departments 1 or 4 in ascending
+order.
+
+mysql> select first_name,last_name,department_id from employees
+    -> where department_id=1 || department_id=4;
++------------+-----------+---------------+
+| first_name | last_name | department_id |
++------------+-----------+---------------+
+| Akshay     | Oza       |             1 |
+| Sonal      | Mehta     |             1 |
+| Karan      | Singh     |             4 |
+| Tina       | Shah      |             4 |
++------------+-----------+---------------+
+
+14.Write a query to display the name (first_name, last_name) and salary for
+all employees whose salary is not in the range 45,000 through 55,000
+and are in department 1 or 4.
+
+mysql> select first_name ,last_name ,salary from employees
+    -> where salary not between 45000 and 55000
+    -> and department_id=1 or department_id=4;
++------------+-----------+----------+
+| first_name | last_name | salary   |
++------------+-----------+----------+
+| Karan      | Singh     | 70000.00 |
+| Tina       | Shah      | 49000.00 |
++------------+-----------+----------+
+
+15.Write a query to display the name (first_name, last_name) and hire date
+for all employees who were hired in 2025.
+
+mysql> select first_name ,last_name ,hire_date from employees
+    -> where hire_date between "2025-01-01" and "2025-12-31";
++------------+-----------+------------+
+| first_name | last_name | hire_date  |
++------------+-----------+------------+
+| Akshay     | Oza       | 2025-10-01 |
+| Neha       | Sharma    | 2025-09-15 |
+| Rohit      | Verma     | 2025-08-20 |
+| Priya      | Patel     | 2025-07-10 |
+| Karan      | Singh     | 2025-06-25 |
+| Anita      | Rao       | 2025-05-15 |
+| Vikram     | Joshi     | 2025-04-05 |
+| Sonal      | Mehta     | 2025-03-20 |
+| Rakesh     | Kumar     | 2025-02-10 |
+| Tina       | Shah      | 2025-01-25 |
++------------+-----------+------------+
+
+16.Write a query to display the first_name of all employees who have both
+"a" and "y" in their first name
+
+mysql> SELECT first_name
+    -> FROM employees
+    -> WHERE first_name LIKE '%a%'
+    ->   AND first_name LIKE '%y%';
++------------+
+| first_name |
++------------+
+| Akshay     |
+| Priya      |
++------------+
+
+17.Write a query to display the last name, job, and salary for all employees
+whose job is that of a Programmer or a Shipping Clerk, and whose salary
+is not equal to $4,500, $10,000, or $15,000.
+
+SELECT last_name, job_id, salary
+FROM employees
+WHERE job_id IN ('Programmer', 'Shipping Clerk')
+  AND salary NOT IN (4500, 10000, 15000);
+
+
+18.Write a query to display the last name of employees whose names have
+exactly 6 characters.
+
+mysql> select last_name from employees
+    -> where char_length(last_name)=6;
++-----------+
+| last_name |
++-----------+
+| Sharma    |
++-----------+
+
+
+19.Write a query to display the last name of employees having 'e' as the third
+character.
+
+mysql> select last_name from employees
+    -> where last_name like '__e%';
+
+
+20.Write a query to display the jobs/designations available in the employees
+table.
+
+mysql> select distinct department_name
+    -> from department;
++-----------------+
+| department_name |
++-----------------+
+| Admin           |
+| CRM             |
+| IT              |
+| HR              |
++-----------------+
+
+
+21.Write a query to select all record from employees where last name in
+'BLAKE', 'SCOTT', 'KING' and 'FORD'
+
+SELECT *
+FROM employees
+WHERE last_name IN ('BLAKE', 'SCOTT', 'KING', 'FORD');
+
