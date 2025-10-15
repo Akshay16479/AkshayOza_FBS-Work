@@ -1,0 +1,35 @@
+End Module Test 2 Set C-(movies)
+
+1.select * from actor;
+
+
+2.select * from movie order by IMDB_rating desc;
+
+
+3.select name from actor where gender="Male" and
+no_of_awards>10;
+
+4. select role,m_id from role
+where a_id=101;
+
+5.select name from actor
+where  nationality!="Indian";
+
+
+6.SELECT m_id, COUNT(a_id) AS number_of_actors
+FROM role
+GROUP BY m_id;
+
+
+8.select * from movie
+order by total_budget 
+limit 1;
+
+9.select gender,count(*) as  from actor
+group by gender;
+
+
+10.select role from role
+where  m_id=3 ;
+
+
