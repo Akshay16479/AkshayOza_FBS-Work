@@ -1,0 +1,867 @@
+1) List all the books that are written by Author Loni and has price
+   less then 600.
+
+mysql> select * from books
+    -> where author_name='loni' and cost<600;
++---------+-----------------------+-------------+--------+----------+
+| Book_No | Book_Name             | Author_Name | Cost   | Category |
++---------+-----------------------+-------------+--------+----------+
+|     102 | Oracle ? Complete Ref | Loni        | 550.00 | Database |
+|     103 | Mastering SQL         | Loni        | 250.00 | Database |
++---------+-----------------------+-------------+--------+----------+
+
+
+2) List the Issue details for the books that are not returned yet.
+
+mysql> select * from issue
+    -> where return_date is null;
++--------------+---------+-----------+------------+-------------+
+| Lib_Issue_Id | Book_No | Member_Id | Issue_Date | Return_Date |
++--------------+---------+-----------+------------+-------------+
+|         7002 |     102 |         2 | 2006-12-25 | NULL        |
+|         7005 |     104 |         2 | 2006-11-15 | NULL        |
+|         7006 |     101 |         3 | 2006-02-18 | NULL        |
++--------------+---------+-----------+------------+-------------+
+
+
+3) Update all the blank return_date with 31-Dec-06 excluding 7005
+    and 7006.
+
+mysql> table issue;
++--------------+---------+-----------+------------+-------------+
+| Lib_Issue_Id | Book_No | Member_Id | Issue_Date | Return_Date |
++--------------+---------+-----------+------------+-------------+
+|         7002 |     102 |         2 | 2006-12-25 | 2006-12-31  |
+|         7005 |     104 |         2 | 2006-11-15 | NULL        |
+|         7006 |     101 |         3 | 2006-02-18 | NULL        |
+|         7012 |     107 |         2 | 2007-05-10 | 2006-12-31  |
+|         7013 |     111 |         3 | 2007-06-15 | 2006-12-31  |
+|         7014 |     103 |         4 | 2007-07-01 | 2006-12-31  |
+|         7015 |     109 |         5 | 2007-07-20 | 2006-12-31  |
+|         7016 |     112 |         6 | 2007-08-05 | 2006-12-31  |
++--------------+---------+-----------+------------+-------------+
+
+
+4) List all the Issue details that have books issued for more then 30
+  days.
+
+mysql> SELECT *
+    -> FROM issue
+    -> WHERE DATEDIFF(CURDATE(), Issue_Date) > 30;
++--------------+---------+-----------+------------+-------------+
+| Lib_Issue_Id | Book_No | Member_Id | Issue_Date | Return_Date |
++--------------+---------+-----------+------------+-------------+
+|         7002 |     102 |         2 | 2006-12-25 | 2006-12-31  |
+|         7005 |     104 |         2 | 2006-11-15 | NULL        |
+|         7006 |     101 |         3 | 2006-02-18 | NULL        |
+|         7012 |     107 |         2 | 2007-05-10 | 2006-12-31  |
+|         7013 |     111 |         3 | 2007-06-15 | 2006-12-31  |
+|         7014 |     103 |         4 | 2007-07-01 | 2006-12-31  |
+|         7015 |     109 |         5 | 2007-07-20 | 2006-12-31  |
+|         7016 |     112 |         6 | 2007-08-05 | 2006-12-31  |
++--------------+---------+-----------+------------+-------------+
+
+
+5) List all the books that have price in range of 500 to 750 and has
+category as Database.
+
+mysql> select * from books
+    -> where cost between 500 and 750
+    -> and category= 'database';
++---------+--------------------------+--------------+--------+----------+
+| Book_No | Book_Name                | Author_Name  | Cost   | Category |
++---------+--------------------------+--------------+--------+----------+
+|     102 | Oracle ? Complete Ref    | Loni         | 550.00 | Database |
+|     104 | PL SQL-Ref               | Scott Urman  | 750.00 | Database |
+|     105 | Database System Concepts | Silberschatz | 650.00 | Database |
++---------+--------------------------+--------------+--------+----------+
+
+
+6) List all the books that belong to any one of the following
+categories Science, Database, Fiction, Management.
+
+mysql> select * from books
+    -> where category in('science','database','fiction','management');
++---------+--------------------------+---------------+---------+----------+
+| Book_No | Book_Name                | Author_Name   | Cost    | Category |
++---------+--------------------------+---------------+---------+----------+
+|     102 | Oracle ? Complete Ref    | Loni          |  550.00 | Database |
+|     103 | Mastering SQL            | Loni          |  250.00 | Database |
+|     104 | PL SQL-Ref               | Scott Urman   |  750.00 | Database |
+|     105 | Database System Concepts | Silberschatz  |  650.00 | Database |
+|     108 | Harry Potter             | J. K. Rowling |  300.00 | Fiction  |
+|     109 | The Alchemist            | Paulo Coelho  |  350.00 | Fiction  |
+|     112 | National Geographic      | Adis Scott    | 1000.00 | Science  |
++---------+--------------------------+---------------+---------+----------+
+
+
+7) List all the members in the descending order of Penalty due on
+them.
+
+
+select Member_Id, penalty from issue
+order by penalty desc;
+
+
+8) Modify the price of book with id 103 to Rs 300 and category to
+RDBMS.
+
+mysql> update books
+    -> set cost=300 ,category='RDBMS'
+    -> where book_no=103;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> table books;
++---------+---------------------------+-----------------+---------+-------------+
+| Book_No | Book_Name                 | Author_Name     | Cost    | Category    |
++---------+---------------------------+-----------------+---------+-------------+
+|     101 | Let us C                  | Denis Ritchie   |  450.00 | System      |
+|     102 | Oracle ? Complete Ref     | Loni            |  550.00 | Database    |
+|     103 | Mastering SQL             | Loni            |  300.00 | Database    |
+|     104 | PL SQL-Ref                | Scott Urman     |  750.00 | Database    |
+|     105 | Database System Concepts  | Silberschatz    |  650.00 | Database    |
+|     106 | Computer Networks         | Tanenbaum       |  500.00 | System      |
+|     107 | Operating System Concepts | Galvin          |  700.00 | System      |
+|     108 | Harry Potter              | J. K. Rowling   |  300.00 | Fiction     |
+|     109 | The Alchemist             | Paulo Coelho    |  350.00 | Fiction     |
+|     110 | RDBMS Fundamentals        | Date            |  600.00 | RDBMS       |
+|     111 | Java Complete Reference   | Herbert Schildt |  800.00 | Programming |
+|     112 | National Geographic       | Adis Scott      | 1000.00 | Science     |
++---------+---------------------------+-----------------+---------+-------------+
+
+
+9) List all the books in ascending order of category and descending
+order of price.
+
+mysql> select book_name,category,cost from books
+    -> order by category asc ,cost desc;
++---------------------------+-------------+---------+
+| book_name                 | category    | cost    |
++---------------------------+-------------+---------+
+| PL SQL-Ref                | Database    |  750.00 |
+| Database System Concepts  | Database    |  650.00 |
+| Oracle ? Complete Ref     | Database    |  550.00 |
+| Mastering SQL             | Database    |  300.00 |
+| The Alchemist             | Fiction     |  350.00 |
+| Harry Potter              | Fiction     |  300.00 |
+| Java Complete Reference   | Programming |  800.00 |
+| RDBMS Fundamentals        | RDBMS       |  600.00 |
+| National Geographic       | Science     | 1000.00 |
+| Operating System Concepts | System      |  700.00 |
+| Computer Networks         | System      |  500.00 |
+| Let us C                  | System      |  450.00 |
++---------------------------+-------------+---------+
+
+
+10) List all the books that contain word SQL in the name of the book.
+
+mysql> select * from books
+    -> where book_name like "%sql%";
++---------+---------------+-------------+--------+----------+
+| Book_No | Book_Name     | Author_Name | Cost   | Category |
++---------+---------------+-------------+--------+----------+
+|     103 | Mastering SQL | Loni        | 300.00 | Database |
+|     104 | PL SQL-Ref    | Scott Urman | 750.00 | Database |
++---------+---------------+-------------+--------+----------+
+
+
+11) List the Lib_Issue_Id, Issue_Date, Return_Date and No of days
+Book was issued.
+
+mysql> SELECT
+    ->     Lib_Issue_Id,
+    ->     Issue_Date,
+    ->     Return_Date,
+    ->     DATEDIFF(IFNULL(Return_Date, CURDATE()), Issue_Date) as "No_of_Days"
+    -> from issue;
++--------------+------------+-------------+------------+
+| Lib_Issue_Id | Issue_Date | Return_Date | No_of_Days |
++--------------+------------+-------------+------------+
+|         7002 | 2006-12-25 | 2006-12-31  |          6 |
+|         7005 | 2006-11-15 | NULL        |       6901 |
+|         7006 | 2006-02-18 | NULL        |       7171 |
+|         7012 | 2007-05-10 | 2006-12-31  |       -130 |
+|         7013 | 2007-06-15 | 2006-12-31  |       -166 |
+|         7014 | 2007-07-01 | 2006-12-31  |       -182 |
+|         7015 | 2007-07-20 | 2006-12-31  |       -201 |
+|         7016 | 2007-08-05 | 2006-12-31  |       -217 |
++--------------+------------+-------------+------------+
+
+
+12) Find the details of the member of the Library in the order of their
+joining the library.
+
+alter table issue
+add column join_date date;
+
+select * from issue
+order by join_date asc;
+
+
+
+13) Display the count of total no of books issued to Member 101.
+
+mysql> select member_id,count(*) from issue
+    -> where member_id=2
+    -> group by member_id;
++-----------+----------+
+| member_id | count(*) |
++-----------+----------+
+|         2 |        3 |
++-----------+----------+
+
+
+14) Display the total penalty due for all the members.
+
+select sum(penalty) from issue;
+
+
+15) Display the total no of members
+
+mysql> select count(*) "Total Books" from books;
++-------------+
+| Total Books |
++-------------+
+|          12 |
++-------------+
+
+
+16) Display the total no of books issued
+
+mysql> select count(*) "Books Issued" from issue;
++--------------+
+| Books Issued |
++--------------+
+|            8 |
++--------------+
+
+17) Display the average membership fees paid by all the members
+
+mysql> select avg(fees_paid) from member101;
++----------------+
+| avg(fees_paid) |
++----------------+
+|      5950.0000 |
++----------------+
+
+
+18) List the various categories and count of books in each category.
+
+mysql> select category,count(*) from books
+    -> group by category;
++-------------+----------+
+| category    | count(*) |
++-------------+----------+
+| System      |        3 |
+| Database    |        4 |
+| Fiction     |        2 |
+| RDBMS       |        1 |
+| Programming |        1 |
+| Science     |        1 |
++-------------+----------+
+
+19) List the book_No and the number of times the book is issued in the
+descending order of count.
+
+mysql> select book_no ,count(*)"number of times book issued" from issue
+    -> group by Book_no
+    -> order by "number of times book issued" desc;
++---------+-----------------------------+
+| book_no | number of times book issued |
++---------+-----------------------------+
+|     101 |                           1 |
+|     102 |                           1 |
+|     103 |                           1 |
+|     104 |                           1 |
+|     107 |                           1 |
+|     109 |                           1 |
+|     111 |                           1 |
+|     112 |                           1 |
++---------+-----------------------------+
+
+
+20) Find the maximum, minimum, total and average penalty amount in
+the member table.
+
+mysql> select max(penalty_amount) ,min(penalty_amount) ,sum(penalty_amount) ,avg(penalty_amount) from member101;
++---------------------+---------------------+---------------------+---------------------+
+| max(penalty_amount) | min(penalty_amount) | sum(penalty_amount) | avg(penalty_amount) |
++---------------------+---------------------+---------------------+---------------------+
+|              150.00 |                0.00 |              500.00 |           83.333333 |
++---------------------+---------------------+---------------------+---------------------+
+
+
+
+21) Display the member id and the no of books for each member that
+has issued more then 2 books.
+
+mysql> select member_id,count(*) from issue
+    -> group by member_id
+    -> having count(*)>2;
++-----------+----------+
+| member_id | count(*) |
++-----------+----------+
+|         2 |        3 |
++-----------+----------+
+
+
+22) Display the member id, book no and no of times the same book is
+issued by the member in the descending order of count.
+
+mysql> select member_id ,book_no,count(*)
+    -> from
+    -> issue
+    -> group by member_id,book_no
+    -> order by count(*) desc;
++-----------+---------+----------+
+| member_id | book_no | count(*) |
++-----------+---------+----------+
+|         2 |     102 |        1 |
+|         2 |     104 |        1 |
+|         3 |     101 |        1 |
+|         2 |     107 |        1 |
+|         3 |     111 |        1 |
+|         4 |     103 |        1 |
+|         5 |     109 |        1 |
+|         6 |     112 |        1 |
++-----------+---------+----------+
+
+
+
+23) Display the month and no of books issued each month in the
+descending order of count.
+
+mysql> select month(issue_date) ,count(*) from issue
+    -> group by month(issue_date)
+    -> order by count(*);
++-------------------+----------+
+| month(issue_date) | count(*) |
++-------------------+----------+
+|                12 |        1 |
+|                11 |        1 |
+|                 2 |        1 |
+|                 5 |        1 |
+|                 6 |        1 |
+|                 8 |        1 |
+|                 7 |        2 |
++-------------------+----------+
+7 rows in set (0.01 sec)
+
+mysql> select monthname(issue_date) ,count(*) from issue
+    -> group by monthname(issue_date)
+    -> order by count(*);
++-----------------------+----------+
+| monthname(issue_date) | count(*) |
++-----------------------+----------+
+| December              |        1 |
+| November              |        1 |
+| February              |        1 |
+| May                   |        1 |
+| June                  |        1 |
+| August                |        1 |
+| July                  |        2 |
++-----------------------+----------+
+
+
+
+24) List the book_no of all the books that are not issued to any
+member so far.
+
+ select book_no from books
+    -> where
+    -> book_no not in
+    -> (select book_no from issue);
++---------+
+| book_no |
++---------+
+|     105 |
+|     106 |
+|     108 |
+|     110 |
++---------+
+
+
+25) List all the member id that exist in member table and has also at
+least one book issued by them.
+
+mysql> SELECT m.Member_Id
+    -> FROM member101 m
+    -> INNER JOIN issue i ON m.Member_Id = i.Member_Id
+    -> GROUP BY m.Member_Id;
++-----------+
+| Member_Id |
++-----------+
+|         2 |
+|         3 |
+|         4 |
+|         5 |
+|         6 |
++-----------+
+
+
+26) List the member ID with highest and lowest no of books issued.
+
+mysql> select member_id ,count(*)
+    -> from issue
+    -> group by member_id
+    -> order by count(*) desc limit 1;
++-----------+----------+
+| member_id | count(*) |
++-----------+----------+
+|         2 |        3 |
++-----------+----------+
+
+mysql> select member_id ,count(*)
+    -> from issue
+    -> group by member_id
+    -> order by count(*)  limit 1;
++-----------+----------+
+| member_id | count(*) |
++-----------+----------+
+|         4 |        1 |
++-----------+----------+
+
+
+
+27) List all the Issue_details for books issued in December and July
+without using any arithmetic, Logical or comparison operator.
+
+mysql> select * from issue
+    -> where month(issue_date)=12 or month(issue_date)=7;
++--------------+---------+-----------+------------+-------------+
+| Lib_Issue_Id | Book_No | Member_Id | Issue_Date | Return_Date |
++--------------+---------+-----------+------------+-------------+
+|         7002 |     102 |         2 | 2006-12-25 | 2006-12-31  |
+|         7014 |     103 |         4 | 2007-07-01 | 2006-12-31  |
+|         7015 |     109 |         5 | 2007-07-20 | 2006-12-31  |
++--------------+---------+-----------+------------+-------------+
+
+
+28) List the Book_No, Book_Name and Issue_date for all the books
+that are issued in month of December and belong to category Database.
+
+select b.book_no, b.book_name, i.issue_date
+from books b
+inner join issue i on b.book_no = i.book_no
+where month(i.issue_date) = 12
+  and b.category = 'Database';
+
+
+
+29) List the Member Id, Member Name and max books allowed in the
+descending order of the max books allowed.
+
+mysql> select member_id,member_name,max_books_allowed from member101
+    -> order by max_books_allowed desc;
++-----------+----------------+-------------------+
+| member_id | member_name    | max_books_allowed |
++-----------+----------------+-------------------+
+|         6 | Akshu          |               110 |
+|         1 | Richa Sharma   |                 5 |
+|         3 | Akshay Oza     |                 4 |
+|         2 | Garima Sen     |                 3 |
+|         5 | Himanshu Verma |                 3 |
+|         4 | Neeta Patil    |                 2 |
++-----------+----------------+-------------------+
+
+
+30) List the Book No, Book Name, Issue_date and Return_Date for all
+the books issued by Richa Sharma.
+
+mysql> select b.book_no,b.book_name,i.issue_date,i.return_date from
+    -> books b inner join issue i
+    -> on
+    -> b.book_no=i.book_no
+    -> inner join member101 m
+    -> on
+    -> i.member_id=m.member_id
+    -> where member_name="garima sen";
++---------+---------------------------+------------+-------------+
+| book_no | book_name                 | issue_date | return_date |
++---------+---------------------------+------------+-------------+
+|     102 | Oracle ? Complete Ref     | 2006-12-25 | 2006-12-31  |
+|     104 | PL SQL-Ref                | 2006-11-15 | NULL        |
+|     107 | Operating System Concepts | 2007-05-10 | 2006-12-31  |
++---------+---------------------------+------------+-------------+
+
+
+
+
+31) List the details of all the members that have issued books in
+Database category.
+
+
+mysql> select * from member101 m
+    -> inner join issue i
+    -> on
+    -> m.member_id=i.member_id
+    -> inner join
+    -> books b on
+    -> i.book_no=b.book_no
+    -> where category="database";
++-----------+-------------+----------------+---------------+-----------------+-----------+-------------------+----------------+--------------+---------+-----------+------------+-------------+---------+-----------------------+-------------+--------+----------+
+| Member_Id | member_name | Member_Address | Acc_Open_Date | Membership_Type | Fees_Paid | Max_Books_Allowed | Penalty_Amount | Lib_Issue_Id | Book_No | Member_Id | Issue_Date | Return_Date | Book_No | Book_Name             | Author_Name | Cost   | Category |
++-----------+-------------+----------------+---------------+-----------------+-----------+-------------------+----------------+--------------+---------+-----------+------------+-------------+---------+-----------------------+-------------+--------+----------+
+|         2 | Garima Sen  | Pune           | 2025-09-28    | Annual          |      1000 |                 3 |         150.00 |         7005 |     104 |         2 | 2006-11-15 | NULL        |     104 | PL SQL-Ref            | Scott Urman | 750.00 | Database |
+|         2 | Garima Sen  | Pune           | 2025-09-28    | Annual          |      1000 |                 3 |         150.00 |         7002 |     102 |         2 | 2006-12-25 | 2006-12-31  |     102 | Oracle ? Complete Ref | Loni        | 550.00 | Database |
+|         4 | Neeta Patil | Bangalore      | 2023-09-15    | Quarterly       |      1200 |                 2 |         100.00 |         7014 |     103 |         4 | 2007-07-01 | 2006-12-31  |     103 | Mastering SQL         | Loni        | 300.00 | Database |
++-----------+-------------+----------------+---------------+-----------------+-----------+-------------------+----------------+--------------+---------+-----------+------------+-------------+---------+-----------------------+-------------+--------+----------+
+
+
+
+32) List all the books that have highest price in their own category.
+
+
+mysql> select category,max(cost) from books
+    -> group by category
+    -> order by max(cost) desc ;
++-------------+-----------+
+| category    | max(cost) |
++-------------+-----------+
+| Science     |   1000.00 |
+| Programming |    800.00 |
+| Database    |    750.00 |
+| System      |    700.00 |
+| RDBMS       |    600.00 |
+| Fiction     |    350.00 |
++-------------+-----------+
+
+
+33) List all the Issue_Details where Issue_date is not within the
+Acc_open_date and Return_date for that member.
+
+mysql> select * from issue
+    -> i inner join member101 m on
+    -> i.member_id=m.member_id
+    -> where i.issue_date not between m.acc_open_date and i.return_date;
++--------------+---------+-----------+------------+-------------+-----------+----------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+| Lib_Issue_Id | Book_No | Member_Id | Issue_Date | Return_Date | Member_Id | member_name    | Member_Address | Acc_Open_Date | Membership_Type | Fees_Paid | Max_Books_Allowed | Penalty_Amount |
++--------------+---------+-----------+------------+-------------+-----------+----------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+|         7002 |     102 |         2 | 2006-12-25 | 2006-12-31  |         2 | Garima Sen     | Pune           | 2025-09-28    | Annual          |      1000 |                 3 |         150.00 |
+|         7005 |     104 |         2 | 2006-11-15 | NULL        |         2 | Garima Sen     | Pune           | 2025-09-28    | Annual          |      1000 |                 3 |         150.00 |
+|         7012 |     107 |         2 | 2007-05-10 | 2006-12-31  |         2 | Garima Sen     | Pune           | 2025-09-28    | Annual          |      1000 |                 3 |         150.00 |
+|         7006 |     101 |         3 | 2006-02-18 | NULL        |         3 | Akshay Oza     | Mumbai         | 2024-04-19    | Half Yearly     |      5000 |                 4 |           0.00 |
+|         7013 |     111 |         3 | 2007-06-15 | 2006-12-31  |         3 | Akshay Oza     | Mumbai         | 2024-04-19    | Half Yearly     |      5000 |                 4 |           0.00 |
+|         7014 |     103 |         4 | 2007-07-01 | 2006-12-31  |         4 | Neeta Patil    | Bangalore      | 2023-09-15    | Quarterly       |      1200 |                 2 |         100.00 |
+|         7015 |     109 |         5 | 2007-07-20 | 2006-12-31  |         5 | Himanshu Verma | Indore         | 2025-01-15    | Annual          |      1500 |                 3 |         150.00 |
+|         7016 |     112 |         6 | 2007-08-05 | 2006-12-31  |         6 | Akshu          | Mumbai         | 2024-07-25    | Annual          |      2000 |               110 |          50.00 |
++--------------+---------+-----------+------------+-------------+-----------+----------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+
+
+
+34) List all the members that have not issued a single book so far.
+
+mysql> select * from member101 m left join issue i
+    -> on m.member_id=i.member_id
+    -> where i.member_id is null;
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+--------------+---------+-----------+------------+-------------+
+| Member_Id | member_name  | Member_Address | Acc_Open_Date | Membership_Type | Fees_Paid | Max_Books_Allowed | Penalty_Amount | Lib_Issue_Id | Book_No | Member_Id | Issue_Date | Return_Date |
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+--------------+---------+-----------+------------+-------------+
+|         1 | Richa Sharma | Pune           | 2005-12-10    | Lifetime        |     25000 |                 5 |          50.00 |         NULL |    NULL |      NULL | NULL       | NULL        |
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+--------------+---------+-----------+------------+-------------+
+1 row in set (0.02 sec)
+
+mysql> select * from member101
+    -> where member_id not in (select member_id from issue);
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+| Member_Id | member_name  | Member_Address | Acc_Open_Date | Membership_Type | Fees_Paid | Max_Books_Allowed | Penalty_Amount |
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+|         1 | Richa Sharma | Pune           | 2005-12-10    | Lifetime        |     25000 |                 5 |          50.00 |
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+
+
+35) List all the members that have issued the same book as issued by
+Garima.
+
+
+
+
+
+36) List the Book_Name, Price of all the books that are not returned
+for more then 30 days.
+
+mysql> select book_name,cost from books b inner join issue i
+    -> on b.book_no=i.book_no
+    -> where datediff(issue_date,return_date)>30;
++---------------------------+---------+
+| book_name                 | cost    |
++---------------------------+---------+
+| Operating System Concepts |  700.00 |
+| Java Complete Reference   |  800.00 |
+| Mastering SQL             |  300.00 |
+| The Alchemist             |  350.00 |
+| National Geographic       | 1000.00 |
++---------------------------+---------+
+
+
+
+37) List all the authors and book_name that has more then 1 book
+written by them.
+
+mysql> select author_name, count(*) as book_count
+    -> from books
+    -> group by author_name
+    -> having count(*) > 1;
++-------------+------------+
+| author_name | book_count |
++-------------+------------+
+| Loni        |          2 |
++-------------+------------+
+
+
+
+38) List the Member ID, Member Name of the people that have issued
+the highest and the lowest no of books.
+
+mysql> select m.member_id, m.member_name, count(*) 
+    -> from member101 m
+    -> inner join issue i on m.member_id = i.member_id
+    -> group by m.member_id, m.member_name
+    -> order by count(*) desc
+    -> limit 1;
++-----------+-------------+--------------+
+| member_id | member_name | books_issued |
++-----------+-------------+--------------+
+|         2 | Garima Sen  |            3 |
++-----------+-------------+--------------+
+1 row in set (0.02 sec)
+
+mysql> select m.member_id, m.member_name, count(*) 
+    -> from member101 m
+    -> inner join issue i on m.member_id = i.member_id
+    -> group by m.member_id, m.member_name
+    -> order by count(*)
+    -> limit 1;
++-----------+-------------+--------------+
+| member_id | member_name | books_issued |
++-----------+-------------+--------------+
+|         4 | Neeta Patil |            1 |
++-----------+-------------+--------------+
+
+
+39) List the details of highest 3 priced books.
+
+mysql> select * from books
+    -> order by cost desc
+    -> limit 3;
++---------+-------------------------+-----------------+---------+-------------+
+| Book_No | Book_Name               | Author_Name     | Cost    | Category    |
++---------+-------------------------+-----------------+---------+-------------+
+|     112 | National Geographic     | Adis Scott      | 1000.00 | Science     |
+|     111 | Java Complete Reference | Herbert Schildt |  800.00 | Programming |
+|     104 | PL SQL-Ref              | Scott Urman     |  750.00 | Database    |
++---------+-------------------------+-----------------+---------+-------------+
+
+
+40) List the total cost of all the books that are currently issued but not
+returned.
+
+mysql> select sum(cost)
+    -> from books b
+    -> inner join issue i on b.book_no = i.book_no
+    -> where i.return_date is null ;
++-----------+
+| sum(cost) |
++-----------+
+|   1200.00 |
++-----------+
+
+
+41) List the details of the book that has been issued maximum no of
+times.
+
+mysql> select b.book_no,b.book_name,b.author_name,cost,category,count(*)
+    -> from books b inner join issue i
+    -> on
+    -> b.book_no=i.book_no
+    -> group by b.book_no,b.book_name,b.author_name,cost,category
+    -> order by count(*) desc limit 1;
++---------+-----------+---------------+--------+----------+----------+
+| book_no | book_name | author_name   | cost   | category | count(*) |
++---------+-----------+---------------+--------+----------+----------+
+|     101 | Let us C  | Denis Ritchie | 450.00 | System   |        1 |
++---------+-----------+---------------+--------+----------+----------+
+
+
+42) List how many books are issued to lifetime members.
+
+mysql> select count(*)
+    -> from member101 m inner join issue i
+    -> on m.member_id = i.member_id
+    -> where Membership_Type = 'Lifetime';
++----------+
+| count(*) |
++----------+
+|        0 |
++----------+
+
+
+43) List all member types and how many members are there in each
+type.
+
+mysql> select membership_type,count(*) from member101
+    -> group by membership_type;
++-----------------+----------+
+| membership_type | count(*) |
++-----------------+----------+
+| Lifetime        |        1 |
+| Annual          |        3 |
+| Half Yearly     |        1 |
+| Quarterly       |        1 |
++-----------------+----------+
+
+
+44) List first 5 members who had joined library.
+
+mysql> select member_id, member_name, acc_open_date, membership_type
+    -> from member101
+    -> order by acc_open_date asc
+    -> limit 5;
++-----------+----------------+---------------+-----------------+
+| member_id | member_name    | acc_open_date | membership_type |
++-----------+----------------+---------------+-----------------+
+|         1 | Richa Sharma   | 2005-12-10    | Lifetime        |
+|         4 | Neeta Patil    | 2023-09-15    | Quarterly       |
+|         3 | Akshay Oza     | 2024-04-19    | Half Yearly     |
+|         6 | Akshu          | 2024-07-25    | Annual          |
+|         5 | Himanshu Verma | 2025-01-15    | Annual          |
++-----------+----------------+---------------+-----------------+
+
+
+45) List the members with their member type, who have issued books
+during the period 1st December to 31st December.
+
+mysql> select m.member_id, m.member_name, m.membership_type, i.issue_date
+    -> from member101 m
+    -> join issue i on m.member_id = i.member_id
+    -> where i.issue_date between '2006-12-01' and '2006-12-31';
++-----------+-------------+-----------------+------------+
+| member_id | member_name | membership_type | issue_date |
++-----------+-------------+-----------------+------------+
+|         2 | Garima Sen  | Annual          | 2006-12-25 |
++-----------+-------------+-----------------+------------+
+
+
+46) List all the members who have not returned books yet.
+
+mysql> select m.member_id, m.member_name, m.membership_type, i.book_no, i.issue_date
+    -> from member101 m
+    -> join issue i on m.member_id = i.member_id
+    -> where i.return_date is null;
++-----------+-------------+-----------------+---------+------------+
+| member_id | member_name | membership_type | book_no | issue_date |
++-----------+-------------+-----------------+---------+------------+
+|         2 | Garima Sen  | Annual          |     104 | 2006-11-15 |
+|         3 | Akshay Oza  | Half Yearly     |     101 | 2006-02-18 |
++-----------+-------------+-----------------+---------+------------+
+
+
+47) List all the members who joined library on the same date Garima
+joined.
+
+mysql> select member_id, member_name, acc_open_date, membership_type
+    -> from member101
+    -> where acc_open_date = (
+    ->     select acc_open_date
+    ->     from member101
+    ->     where member_name = 'Garima Sen'
+    -> );
++-----------+-------------+---------------+-----------------+
+| member_id | member_name | acc_open_date | membership_type |
++-----------+-------------+---------------+-----------------+
+|         2 | Garima Sen  | 2025-09-28    | Annual          |
++-----------+-------------+---------------+-----------------+
+
+
+48) List all the members who has issued books from author “Loni” in
+the month of December
+
+mysql> select distinct m.member_id, m.member_name, m.membership_type, i.issue_date, b.book_name
+    -> from member101 m
+    -> join issue i on m.member_id = i.member_id
+    -> join books b on i.book_no = b.book_no
+    -> where b.author_name = 'Loni'
+    ->   and month(i.issue_date) = 12;
++-----------+-------------+-----------------+------------+-----------------------+
+| member_id | member_name | membership_type | issue_date | book_name             |
++-----------+-------------+-----------------+------------+-----------------------+
+|         2 | Garima Sen  | Annual          | 2006-12-25 | Oracle ? Complete Ref |
++-----------+-------------+-----------------+------------+-----------------------+
+
+
+49) List names of the authors whose books are least issued by
+lifetime members.
+
+mysql> select b.author_name, count(*) as times_issued
+    -> from books b
+    -> inner join issue i on b.book_no = i.book_no
+    -> inner join member101 m on i.member_id = m.member_id
+    -> where m.membership_type = 'Lifetime'
+    -> group by b.author_name
+    -> order by times_issued
+    -> limit 1;
+Empty set (0.00 sec)
+
+
+50) List the names of members who has issued the books whose cost
+is more than 300 rupees and whose author is “Scott Urman”
+
+mysql> select m.member_id, m.member_name, m.membership_type, b.book_name, b.cost
+    -> from member101 m
+    -> join issue i on m.member_id = i.member_id
+    -> join books b on i.book_no = b.book_no
+    -> where b.author_name = 'Scott Urman'
+    ->   and b.cost > 300;
++-----------+-------------+-----------------+------------+--------+
+| member_id | member_name | membership_type | book_name  | cost   |
++-----------+-------------+-----------------+------------+--------+
+|         2 | Garima Sen  | Annual          | PL SQL-Ref | 750.00 |
++-----------+-------------+-----------------+------------+--------+
+
+
+51) List all lifetime members who joined library during 1st January
+2006 to 31st December 2006 but issued only one book.
+
+mysql> select
+    ->     m.member_id,
+    ->     m.member_name,
+    ->     m.acc_open_date,
+    ->     m.membership_type,
+    ->     count(i.book_no)
+    -> from member101 m
+    -> inner join issue i on m.member_id = i.member_id
+    -> where
+    ->     m.membership_type = 'Lifetime'
+    ->     and m.acc_open_date between '2006-01-01' and '2006-12-31'
+    -> group by
+    ->     m.member_id,
+    ->     m.member_name,
+    ->     m.acc_open_date,
+    ->     m.membership_type;
+Empty set (0.00 sec)
+
+
+
+52) Modify the Penalty_Amount for Garima Sen to Rs 100.
+
+mysql> update member101
+    -> set penalty_amount=100
+    -> where member_name="garima sen";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> table member101;
++-----------+----------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+| Member_Id | member_name    | Member_Address | Acc_Open_Date | Membership_Type | Fees_Paid | Max_Books_Allowed | Penalty_Amount |
++-----------+----------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+|         1 | Richa Sharma   | Pune           | 2005-12-10    | Lifetime        |     25000 |                 5 |          50.00 |
+|         2 | Garima Sen     | Pune           | 2025-09-28    | Annual          |      1000 |                 3 |         100.00 |
+|         3 | Akshay Oza     | Mumbai         | 2024-04-19    | Half Yearly     |      5000 |                 4 |           0.00 |
+|         4 | Neeta Patil    | Bangalore      | 2023-09-15    | Quarterly       |      1200 |                 2 |         100.00 |
+|         5 | Himanshu Verma | Indore         | 2025-01-15    | Annual          |      1500 |                 3 |         150.00 |
+|         6 | Akshu          | Mumbai         | 2024-07-25    | Annual          |      2000 |               110 |          50.00 |
++-----------+----------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+
+
+
