@@ -1,0 +1,77 @@
+class ComplexNumber {
+    double real;
+    double imaginary;
+
+//default constructor
+
+ComplexNumber(){
+System.out.println("contructor called");
+
+this.real=3.0;
+this.imaginary=2.5;
+
+}
+
+
+//parameterized constructor
+
+ComplexNumber(double d,double m){
+System.out.println("parameterized constructor called");
+
+this.real=d;
+this.imaginary=m;
+
+}
+
+
+    // Setters
+    void setReal(double r) {
+        this.real = r;
+    }
+
+    void setImaginary(double i) {
+        this.imaginary = i;
+    }
+
+    // Getters
+    double getReal() {
+        return this.real;
+    }
+
+    double getImaginary() {
+        return this.imaginary;
+    }
+
+    // Display method
+    void display() {
+        System.out.println("Complex Number : " + this.real + " + " + this.imaginary + "i");
+    }
+}
+// ComplexNumber class ends here
+
+
+class test {
+    public static void main(String[] args) {
+
+        ComplexNumber c1 = new ComplexNumber();
+        ComplexNumber c2 = new ComplexNumber(9,5);
+
+        /*c1.setReal(5);
+        c1.setImaginary(8);
+
+        c2.setReal(7);
+        c2.setImaginary(3);*/
+
+        // Display both complex numbers
+        c1.display();
+        c2.display();
+
+            
+         /*if (c1.getReal() > c2.getReal()) {
+            System.out.println("c1 has larger real part");
+        } else if (c1.getReal() < c2.getReal()) {
+            System.out.println("c2 has larger real part");
+        }*/
+    }
+}
+// TestComplex class ends here
