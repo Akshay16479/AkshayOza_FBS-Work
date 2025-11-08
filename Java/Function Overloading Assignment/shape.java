@@ -1,32 +1,58 @@
+class Triangle {
+    double base, height;
+    Triangle(double b, double h) {
+        this.base = b;
+        this.height = h;
+    }
+}
+
+class Rectangle {
+    int length, breadth;
+    Rectangle(int l, int b) {
+        this.length = l;
+        this.breadth = b;
+    }
+}
+
+class Circle {
+    double radius;
+    Circle(double r) {
+        this.radius = r;
+    }
+}
+
 class Shape {
 
     // Triangle
-      void area(double base, double height) {
-        System.out.println("Area of Triangle: " + (0.5 * base * height));
+    double area(Triangle t) {
+        return 0.5 * t.base * t.height;
     }
 
     // Rectangle
-    void area(int length, int breadth) {
-        System.out.println("Area of Rectangle: " + (length * breadth));
+    int area(Rectangle r) {
+        return r.length * r.breadth;
     }
 
-    //Circle
-      void area(double radius) {
-        System.out.println("Area of Circle: " + (3.14 * radius * radius));
+    // Circle
+    double area(Circle c) {
+        return 3.14 * c.radius * c.radius;
     }
-
 }
-// class ends here
+//shape class ends here
 
 
 class test {
     public static void main(String[] args) {
 
-        Shape s = new Shape();   // object
+        Triangle t = new Triangle(10.4, 5.6);
+        Rectangle r = new Rectangle(8,4);
+        Circle c = new Circle(7.5);
 
-        s.area(10.0,5.0);     
-        s.area(8,4);          
-        s.area(7.0);   
+        Shape s = new Shape();
+
+        System.out.println("triangle: " + s.area(t));
+        System.out.println("rectangle : " + s.area(r));
+        System.out.println("circle : " + s.area(c));
     }
 }
-
+//class test ends here
