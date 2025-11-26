@@ -106,4 +106,4 @@ Each account maintains its transaction history
 
 Interest applies only to Saving Accounts
 
-Salary accounts freeze automatically after 2 months of inactivity
+Salary accounts freeze automatically after 2 months of inactivity..
