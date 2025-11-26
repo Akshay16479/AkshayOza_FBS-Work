@@ -1,109 +1,220 @@
-Banking Application (MVC Structure)
-📌 Overview
+Banking Management System
+Overview
 
-This is a Banking Management System implemented in Java using the MVC (Model-View-Controller) architecture.
+This is a console-based Java Banking Management System designed to simulate real-world banking operations such as account creation, deposits, withdrawals, loan management, interest calculation, and transaction tracking. The system uses Object-Oriented Programming (OOP) concepts like inheritance, abstraction, interfaces, polymorphism, and encapsulation.
 
-The application allows users to:
+The application supports multiple types of bank accounts: Saving Account, Current Account, Salary Account, and Loan Account.
 
-Create different types of bank accounts: Saving, Current, Salary, Loan
+Table of Contents
 
-Deposit and withdraw money
+Classes & Interfaces
 
-View account details and transaction history
+Account Types
 
-Calculate interest for savings accounts
+Functionalities
 
-Generate end-of-day reports
+How to Run
 
-The project separates data models, business logic, and user interface for clean and maintainable code.
+System Flow
 
-📌 Features
+End-of-Day Reporting
 
-Create accounts for Saving, Current, Salary, and Loan types
+Transaction Management
 
-Deposit and withdraw money with rules (minimum balance, overdraft, loan repayment)
+Classes & Interfaces
+1. Bank
 
-Track transactions for each account
+Represents the bank entity with details like branch ID, name, location, total accounts, and IFSC code.
 
-Display single account or all accounts
+Attributes:
 
-Calculate interest for Saving Accounts
+branchId
 
-Freeze salary accounts automatically after 2 months of inactivity
+bankName
 
-Generate End-of-Day Reports
+branchName
 
-📌 Folder Structure & Files
-Folder / File	Description
-model/Bank.java
-	Bank branch information and details
-model/Transaction.java
-	Transaction data for accounts
-model/AccountOperation.java
-	Interface for account operations (deposit, withdraw, etc.)
-model/BankAccount.java
-	Abstract base class for all accounts
-model/SavingAccount.java
-	Saving account implementation
-model/CurrentAccount.java
-	Current account implementation
-model/SalaryAccount.java
-	Salary account implementation
-model/LoanAccount.java
-	Loan account implementation
-view/BankView.java
-	Console-based menu and output display
-controller/BankController.java
-	Handles program logic and connects Model with View
-Test.java
-	Main entry point to run the program
-📌 MVC Breakdown
+bankLocation
 
-Model: Classes representing the bank, accounts, and transactions.
+totalAccountcount
 
-View: Handles console-based user interface and menu displays.
+IfscCode
 
-Controller: Contains all program logic, connecting Model and View.
+Constructors:
 
-📌 How to Run
+Default constructor (initializes default bank)
 
-Open the project in Eclipse/IntelliJ or any Java IDE.
+Parameterized constructor (custom initialization)
 
-Ensure all files are inside the practiceworkjava package.
+Methods:
 
-Compile and run Test.java
-.
+Getter and Setter methods for all attributes
 
-Use the console menu to interact with the application.
+toString() for printing bank details
 
-📌 Usage Example
+2. Transaction
 
-Run the program → Menu is displayed
+Represents a bank transaction. Each account can store multiple transactions.
 
-Choose 1 → Create a new account
+Attributes:
 
-Choose 2 → Deposit money
+transactionId
 
-Choose 3 → Withdraw money
+transactionDate
 
-Choose 4 → Display account details
+transactionType (Deposit, Withdraw, Repayment, Interest)
 
-Choose 5 → Display all accounts
+amount
 
-Choose 6 → View transaction history
+updatedBalance
 
-Choose 7 → Calculate interest (Saving Accounts)
+Methods:
 
-Choose 8 → Generate end-of-day report
+Constructor to initialize transaction
 
-Choose 9 → Exit
+Getter methods
 
-📌 Notes
+toString() for displaying transaction details
 
-Accounts are stored in an array
+3. AccountOperation (Interface)
 
-Each account maintains its transaction history
+Defines the contract for bank accounts.
 
-Interest applies only to Saving Accounts
+Methods:
 
-Salary accounts freeze automatically after 2 months of inactivity..
+deposit(double amount)
+
+withdraw(double amount)
+
+showDetails()
+
+Getters & Setters for account number, account holder name, and balance
+
+4. BankAccount (Abstract Class)
+
+Implements the AccountOperation interface. Provides common behavior for all account types.
+
+Attributes:
+
+accountNumber, accountHolderName, balance
+
+accountHolderAadhar, nomineeAadhar
+
+accountStatus (active/inactive)
+
+transactions[] and transactionCount
+
+Methods:
+
+Abstract withdraw()
+
+Concrete deposit(), showDetails(), addTransaction()
+
+Getters and Setters for common attributes
+
+Account Types
+1. SavingAccount
+
+Minimum Balance: 10,000
+
+Interest Rate: 8% (static)
+
+Allows deposits and withdrawals while maintaining minimum balance
+
+Tracks interest transactions
+
+2. CurrentAccount
+
+Minimum Balance: 7,000
+
+Overdraft Limit: Customizable
+
+Supports deposit and withdrawal with overdraft facility
+
+3. SalaryAccount
+
+Interest Rate: 4.5% (static)
+
+Automatically freezes accounts inactive for more than 2 months
+
+Allows deposits and withdrawals
+
+4. LoanAccount
+
+Supports loan repayment only
+
+Cannot withdraw funds
+
+Keeps track of loan amount and outstanding balance
+
+Functionalities
+
+Create Account – Choose from Saving, Current, Salary, or Loan accounts.
+
+Deposit – Add money to the selected account.
+
+Withdraw – Withdraw money based on account rules (minimum balance, overdraft, loan restrictions).
+
+Display Account Details – Show all information of a single account.
+
+Display All Accounts – List all accounts with balances.
+
+Transaction History – View all transactions for a selected account.
+
+Calculate Interest – Apply interest automatically for saving accounts.
+
+End-of-Day Report – Summary of all accounts and balances.
+
+How to Run
+
+Clone or download the repository.
+
+Compile all .java files in a single package (practiceworkjava).
+
+javac *.java
+
+
+Run the Test class:
+
+java practiceworkjava.Test
+
+
+Follow the console menu for operations.
+
+System Flow
+1. User sees menu
+2. Choose action: Create, Deposit, Withdraw, Display, Transactions, Interest, Report, Exit
+3. For Create Account:
+    - Select account type
+    - Enter name, balance, Aadhar, nominee
+    - Account is created with unique account number
+4. For Deposit/Withdraw:
+    - Enter account number
+    - Enter amount
+    - Transaction is added
+5. Display or Transaction History:
+    - Shows account details or transaction list
+6. End-of-Day Report:
+    - Summary of all accounts
+
+End-of-Day Reporting
+
+Displays total number of accounts
+
+Shows account number and balance for each account
+
+Transaction Management
+
+Each account maintains an array of Transaction objects
+
+Transactions include:
+
+Deposit
+
+Withdraw
+
+Loan Repayment
+
+Interest
+
+Transactions can be viewed individually for each account
