@@ -1,84 +1,71 @@
 Banking Management System
-Overview
+1. Overview
 
-This is a console-based Java Banking Management System designed to simulate real-world banking operations such as account creation, deposits, withdrawals, loan management, interest calculation, and transaction tracking. The system uses Object-Oriented Programming (OOP) concepts like inheritance, abstraction, interfaces, polymorphism, and encapsulation.
+This is a console-based Java Banking Management System that simulates real-world banking operations. It allows users to manage accounts, deposits, withdrawals, loans, interest, and transactions.
 
-The application supports multiple types of bank accounts: Saving Account, Current Account, Salary Account, and Loan Account.
+The system uses Object-Oriented Programming (OOP) principles:
 
-Table of Contents
+Encapsulation – Private fields with getters/setters
 
-Classes & Interfaces
+Inheritance – Account types extend BankAccount
 
-Account Types
+Abstraction – BankAccount abstract class with common methods
 
-Functionalities
+Polymorphism – Account operations through interface AccountOperation
 
-How to Run
+Supported Account Types:
 
-System Flow
+Saving Account
 
-End-of-Day Reporting
+Current Account
 
-Transaction Management
+Salary Account
 
-Classes & Interfaces
-1. Bank
+Loan Account
 
-Represents the bank entity with details like branch ID, name, location, total accounts, and IFSC code.
+2. Classes & Interfaces
+2.1 Bank
 
+Represents the bank branch and basic details.
 Attributes:
 
-branchId
+branchId, bankName, branchName
 
-bankName
-
-branchName
-
-bankLocation
-
-totalAccountcount
-
-IfscCode
+bankLocation, totalAccountcount, IfscCode
 
 Constructors:
 
-Default constructor (initializes default bank)
+Default constructor – initializes default bank
 
-Parameterized constructor (custom initialization)
+Parameterized constructor – allows custom initialization
 
 Methods:
 
-Getter and Setter methods for all attributes
+Getters and setters
 
-toString() for printing bank details
+toString() – prints bank details
 
-2. Transaction
+2.2 Transaction
 
-Represents a bank transaction. Each account can store multiple transactions.
+Represents a bank transaction for each account.
 
 Attributes:
 
-transactionId
+transactionId, transactionDate, transactionType
 
-transactionDate
-
-transactionType (Deposit, Withdraw, Repayment, Interest)
-
-amount
-
-updatedBalance
+amount, updatedBalance
 
 Methods:
 
-Constructor to initialize transaction
+Constructor for initialization
 
-Getter methods
+Getters for each field
 
-toString() for displaying transaction details
+toString() – displays transaction information
 
-3. AccountOperation (Interface)
+2.3 AccountOperation (Interface)
 
-Defines the contract for bank accounts.
+Defines the contract for all accounts.
 
 Methods:
 
@@ -88,11 +75,11 @@ withdraw(double amount)
 
 showDetails()
 
-Getters & Setters for account number, account holder name, and balance
+Getters & Setters for accountNumber, accountHolderName, balance
 
-4. BankAccount (Abstract Class)
+2.4 BankAccount (Abstract Class)
 
-Implements the AccountOperation interface. Provides common behavior for all account types.
+Implements AccountOperation and provides common functionality for all accounts.
 
 Attributes:
 
@@ -100,7 +87,7 @@ accountNumber, accountHolderName, balance
 
 accountHolderAadhar, nomineeAadhar
 
-accountStatus (active/inactive)
+accountStatus (Active/Inactive)
 
 transactions[] and transactionCount
 
@@ -110,10 +97,10 @@ Abstract withdraw()
 
 Concrete deposit(), showDetails(), addTransaction()
 
-Getters and Setters for common attributes
+Getters & Setters for all fields
 
-Account Types
-1. SavingAccount
+3. Account Types
+3.1 SavingAccount
 
 Minimum Balance: 10,000
 
@@ -123,7 +110,7 @@ Allows deposits and withdrawals while maintaining minimum balance
 
 Tracks interest transactions
 
-2. CurrentAccount
+3.2 CurrentAccount
 
 Minimum Balance: 7,000
 
@@ -131,15 +118,17 @@ Overdraft Limit: Customizable
 
 Supports deposit and withdrawal with overdraft facility
 
-3. SalaryAccount
+3.3 SalaryAccount
 
 Interest Rate: 4.5% (static)
 
-Automatically freezes accounts inactive for more than 2 months
+Automatically freezes account after 2 months of inactivity
 
 Allows deposits and withdrawals
 
-4. LoanAccount
+Tracks last transaction date
+
+3.4 LoanAccount
 
 Supports loan repayment only
 
@@ -147,67 +136,67 @@ Cannot withdraw funds
 
 Keeps track of loan amount and outstanding balance
 
-Functionalities
+4. Functionalities
 
-Create Account – Choose from Saving, Current, Salary, or Loan accounts.
+Create Account – Saving, Current, Salary, Loan
 
-Deposit – Add money to the selected account.
+Deposit – Add money to account
 
-Withdraw – Withdraw money based on account rules (minimum balance, overdraft, loan restrictions).
+Withdraw – Withdraw money according to rules
 
-Display Account Details – Show all information of a single account.
+Display Account Details – Single account info
 
-Display All Accounts – List all accounts with balances.
+Display All Accounts – Show all accounts and balances
 
-Transaction History – View all transactions for a selected account.
+Transaction History – View all transactions of an account
 
-Calculate Interest – Apply interest automatically for saving accounts.
+Calculate Interest – Apply interest automatically for saving accounts
 
-End-of-Day Report – Summary of all accounts and balances.
+End-of-Day Report – Summary of all accounts
 
-How to Run
+Exit – Close application
 
-Clone or download the repository.
+5. System Flow
 
-Compile all .java files in a single package (practiceworkjava).
+User sees menu
 
-javac *.java
+Choose operation
 
+For Create Account:
 
-Run the Test class:
+Select account type
 
-java practiceworkjava.Test
+Enter name, balance, Aadhar, nominee
 
+System assigns unique account number
 
-Follow the console menu for operations.
+For Deposit/Withdraw:
 
-System Flow
-1. User sees menu
-2. Choose action: Create, Deposit, Withdraw, Display, Transactions, Interest, Report, Exit
-3. For Create Account:
-    - Select account type
-    - Enter name, balance, Aadhar, nominee
-    - Account is created with unique account number
-4. For Deposit/Withdraw:
-    - Enter account number
-    - Enter amount
-    - Transaction is added
-5. Display or Transaction History:
-    - Shows account details or transaction list
-6. End-of-Day Report:
-    - Summary of all accounts
+Enter account number
 
-End-of-Day Reporting
+Enter amount
 
-Displays total number of accounts
+Transaction is recorded
 
-Shows account number and balance for each account
+For Display or Transaction History:
 
-Transaction Management
+View account info or transactions
 
-Each account maintains an array of Transaction objects
+End-of-Day Report:
 
-Transactions include:
+Shows all accounts with balances
+
+6. End-of-Day Reporting
+
+Total accounts
+
+Account number and current balance for each account
+
+7. Transaction Management
+
+Each account maintains a Transaction[] array
+
+Types of transactions:
 
 Deposit
 
@@ -217,4 +206,4 @@ Loan Repayment
 
 Interest
 
-Transactions can be viewed individually for each account
+Transactions can be viewed individually
