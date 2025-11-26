@@ -1,0 +1,19 @@
+practiceworkjava/
+│
+├── model/
+│    ├── Bank.java
+│    ├── Transaction.java
+│    ├── AccountOperation.java
+│    ├── BankAccount.java
+│    ├── SavingAccount.java
+│    ├── CurrentAccount.java
+│    ├── SalaryAccount.java
+│    └── LoanAccount.java
+│
+├── view/
+│    └── BankView.java
+│
+├── controller/
+│    └── BankController.java
+│
+└── Test.java
