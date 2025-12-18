@@ -1,0 +1,10 @@
+Living Room
+Bedroom
+Kitchen
+Bathroom
+Balcony
+Study Room
+Lobby
+Corridor
+Staircase
+Pooja Room
