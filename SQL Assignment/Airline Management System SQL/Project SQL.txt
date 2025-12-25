@@ -1,0 +1,85 @@
+//passenger
+
+mysql> create table passenger
+    -> (pid int primary key,
+    -> first_name varchar(20) not null,       
+    -> last_name varchar(20) not null,
+    -> contact_number varchar(10),
+    -> email varchar(30) unique,
+    -> seat_preference varchar(20)
+
+
+//aircraft
+
+mysql> create table aircraft
+    -> (aid int primary key,
+    -> registration_number varchar(30) unique not null,
+    -> model varchar(30),
+    -> seating_capacty int);
+
+//flight
+
+mysql> create table flight(
+    -> fid int primary key,
+    -> flight_number varchar(30) unique not null,
+    -> origin varchar(30),
+    -> departure datetime,
+    -> arrival datetime,
+    -> aid int,
+    -> foreign key(aid)
+    -> references aircraft(aid));
+
+//booking
+
+mysql> create table booking
+    -> (
+    -> bid int primary key,
+    -> book_date date not null,
+    -> reservation_status varchar(20) default 'confirmed',
+    -> total_amount decimal(7,2),
+    -> payment_status varchar(30),
+    -> fid int,
+    -> pid int,
+    -> foreign key(fid)
+    -> references flight(fid),
+    -> foreign key(pid)
+    -> references passenger(pid));
+
+//itinerary
+mysql> create table itinerary(
+    -> itid int primary key,
+    -> total_travel_time varchar(30),
+    -> pid int,
+    -> bid int,
+    -> foreign key(pid)
+    -> references passenger(pid),
+    -> foreign key(bid)
+    -> references booking(bid));
+
+//fare
+mysql> create table fare(
+    -> fare_id int primary key,
+    -> fid int,
+    -> seat_class varchar(30),
+    -> price decimal(7,2),
+    -> foreign key(fid)
+    -> references flight(fid));
+
+//crew
+mysql> create table crew(
+    -> cid int primary key,
+    -> name varchar(30),
+    -> role varchar(30),
+    -> contact varchar(10),
+    -> experience_year int);
+
+//fca
+mysql> create table fca(
+    -> fcaid int primary key,
+    -> fid int,
+    -> cid int,
+    -> duty_date date,
+    -> foreign key(fid)
+    -> references flight(fid),
+    -> foreign key(cid)
+    -> references crew(cid));
