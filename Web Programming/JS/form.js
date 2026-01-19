@@ -1,5 +1,5 @@
 
-        function validateForm() {
+        function validateForm() {   //js seperate file
 
              username = document.getElementById("username").value.trim();
              password = document.getElementById("password").value;
@@ -54,4 +54,5 @@
             alert("Form submitted successfully!");
             return true;
         }
+
     
