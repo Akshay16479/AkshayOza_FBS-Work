@@ -1,4 +1,4 @@
-package ADT;
+package ADT;             // tree 
 
 import java.util.Scanner;
 
@@ -167,9 +167,10 @@ class TreeMenu {
 				break;
 
 			default:
-				System.out.println("Invalid");
+				System.out.println("Invalid"); 
 			}
 		}
 		sc.close();
 	}
 }
+
