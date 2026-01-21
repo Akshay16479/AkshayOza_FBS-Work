@@ -1,4 +1,4 @@
-package Threading;
+package Threading;//
 
  class Worker1 extends Thread {
 
@@ -42,3 +42,4 @@ class Test{
 }
 	
 }
+
