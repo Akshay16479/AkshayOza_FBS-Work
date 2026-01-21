@@ -1,4 +1,4 @@
-package ADT;             // tree.
+package ADT;             
 
 import java.util.Scanner;
 
@@ -173,5 +173,6 @@ class TreeMenu {
 		sc.close();
 	}
 }
+
 
 
