@@ -2,6 +2,7 @@ package com.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -59,7 +60,28 @@ public class JdbcApplication {
 	{
 		try
 		{
-			int updateCount=stmt.executeUpdate("insert into employee values(101,'abc',40000)" );
+			String s ="insert into employee values(?,?,?)";
+			PreparedStatement ps=con.prepareStatement(s);
+			ps.setInt(1, 124);
+			ps.setString(2,"xyz");
+			ps.setDouble(3,20000);
+			ps.executeUpdate();
+			
+			String t ="insert into employee values(?,?,?)";
+			PreparedStatement pss=con.prepareStatement(t);
+			pss.setInt(1, 1324);
+			pss.setString(2,"akshayyy");
+			pss.setDouble(3,20000);
+			pss.executeUpdate();
+			
+			String r ="insert into employee values(?,?,?)";
+			PreparedStatement psss=con.prepareStatement(r);
+			psss.setInt(1, 144);
+			psss.setString(2,"aksh");
+			psss.setDouble(3,60000);
+			psss.executeUpdate();
+			
+			
 		}
 		catch (Exception e) 
 		{
