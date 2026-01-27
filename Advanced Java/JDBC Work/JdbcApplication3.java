@@ -1,4 +1,4 @@
-package com.database;//daa
+package com.database;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -116,4 +116,5 @@ public class JdbcApplication {
 	}
 
 }
+
 
