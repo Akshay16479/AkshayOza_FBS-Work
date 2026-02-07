@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register Yourself</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .form-box {
+            width: 420px;
+            margin: 60px auto;
+            padding: 25px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 12px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        .radio-group {
+            width: auto;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-box">
+    <h2>Register Yourself</h2>
+
+    <form>
+        <label>Name</label>
+        <input type="text" name="name" required>
+
+        <label>Qualification</label>
+        <select name="qualification" required>
+            <option value="">-- Select Qualification --</option>
+            <option>B.Tech</option>
+            <option>M.Tech</option>
+            <option>BCA</option>
+            <option>MCA</option>
+            <option>BA</option>
+            <option>MA</option>
+        </select>
+
+        <label>Gender</label>
+        <input type="radio" name="gender" value="Male"> Male
+        <input type="radio" name="gender" value="Female"> Female
+
+        <label>Grade</label>
+        <input type="text" name="grade">
+
+        <label>Work Experience (Years)</label>
+        <select name="experience">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+
+        <label>Salary Expectation</label>
+        <input type="number" name="salary">
+        
+        <label>Company Name</label>
+        <input type="text" name="company name" required>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+</body>
+</html>
