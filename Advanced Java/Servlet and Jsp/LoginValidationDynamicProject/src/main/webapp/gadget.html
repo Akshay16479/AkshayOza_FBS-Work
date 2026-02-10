@@ -1,0 +1,76 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+	    <title>Gadget</title>
+	
+	    <script>
+	        function updateLaptopPrice() {
+	            let laptop = document.getElementById("laptop").value;
+	            let priceField = document.getElementById("laptopPrice");
+	
+	            let prices = {
+	                "Dell": 55000,
+	                "HP": 60000,
+	                "Lenovo": 50000
+	            };
+	
+	            priceField.value = laptop ? prices[laptop] : "";
+	        }
+	
+	        function updateMobilePrice() {
+	            let mobile = document.getElementById("mobile").value;
+	            let priceField = document.getElementById("mobilePrice");
+	
+	            let prices = {
+	                "iPhone": 80000,
+	                "Samsung": 60000,
+	                "Redmi": 15000
+	            };
+	
+	            priceField.value = mobile ? prices[mobile] : "";
+	        }
+	    </script>
+	</head>
+	
+	<body>
+	
+	<h2>Gadget Selection</h2>
+	
+	<form action="data" method="post">
+	
+	    <div>
+	        Laptop:
+	        <select id="laptop" name="laptop" onchange="updateLaptopPrice()">
+	            <option value="">Select Laptop</option>
+	            <option value="Dell">Dell</option>
+	            <option value="HP">HP</option>
+	            <option value="Lenovo">Lenovo</option>
+	        </select>
+	
+	        Price:
+	        <input type="text" id="laptopPrice" name="laptopPrice" readonly>
+	    </div>
+	
+	    <br>
+	
+	    <div>
+	        Mobile:
+	        <select id="mobile" name="mobile" onchange="updateMobilePrice()">
+	            <option value="">Select Mobile</option>
+	            <option value="iPhone">iPhone</option>
+	            <option value="Samsung">Samsung</option>
+	            <option value="Redmi">Redmi</option>
+	        </select>
+	
+	        Price:
+	        <input type="text" id="mobilePrice" name="mobilePrice" readonly>
+	    </div>
+	
+	    <br>
+	
+	    <input type="submit" value="Proceed">
+	
+	</form>
+	
+	</body>
+	</html>
