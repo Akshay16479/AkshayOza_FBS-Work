@@ -14,14 +14,14 @@ public class MainApp {
 		Session ses = factory.openSession();
 		Transaction tr = ses.beginTransaction();
 		
-		//Mobile m1=new Mobile(1234, "Apple", 70000, "IPhone15", "White");
+		Mobilee m1=new Mobilee(12345, "Apple", 70000, "IPhone15", "White");
 
-		Mobile ref=null;
-		ref=ses.get(Mobile.class, 1234);
-		System.out.println(ref);
+		//Mobilee ref=null;
+		//ref=ses.get(Mobilee.class, 1234);
+		//System.out.println(ref);
 		
-		//ses.save(m1);
-		//tr.commit();
+		ses.save(m1);
+		tr.commit();
 		ses.close();
 		
 
