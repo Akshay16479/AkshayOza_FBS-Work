@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+	<class name="com.aug.demo.Mobile" table="MOBILE_TABLE">
+	<id name="imeiNo" column="IMEI_NO">
+	<generator class="assigned"></generator>
+	</id>
+	
+	<property name="brand" column="BRAND"></property>
+	<property name="price"></property>
+	<property name="model"></property>
+	<property name="colour"></property>
+	
+</class>
+</hibernate-mapping>
