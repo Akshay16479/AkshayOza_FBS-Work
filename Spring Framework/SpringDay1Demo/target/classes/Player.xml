@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd">
+       
+       
+       <bean id="ply" class="Player">
+       <property name="jerseyNo" value="18"></property>
+       <property name="name" value="virat kohli"></property>
+       <property name="runs" value="9876"></property>
+       <property name="wickets" value=" 323"></property> 
+       
+       <constructor-arg value="222"></constructor-arg>
+       <constructor-arg value="Rohit"></constructor-arg>
+       <constructor-arg value="3837"></constructor-arg>
+       <constructor-arg value="31"></constructor-arg>
+     
+       
+       
+       </bean>
+       
+       
+</beans>      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
