@@ -34,5 +34,18 @@ public class EmployeeBusinessService {
 		rep.deleteById(eId);
 	    return "Employee Deleted Successfully";
 	}
+	
+	//custom method impl
+	
+	public List<Employee> getEmployeeByName(String name)
+	{
+		return rep.findByEName(name);
+	}
 
+	//JPQL
+	 public List<Employee> getEmployeeBySalary(double sal)
+	    {
+	        return rep.findByESalGreaterThan(sal);
+	    }
+	
 }

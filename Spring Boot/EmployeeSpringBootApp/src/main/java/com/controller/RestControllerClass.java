@@ -56,4 +56,17 @@ public class RestControllerClass
 		
 	}
 	
+	@GetMapping("/employee/{name}")
+	public List<Employee> getEmployee(@PathVariable String name)
+	{
+		return service.getEmployeeByName(name);
+		
+	}
+	
+	@GetMapping("/salary/{sal}")
+    public List<Employee> getEmployeeBySalary(@PathVariable double sal)
+    {
+        return service.getEmployeeBySalary(sal);
+    }
+	
 }
