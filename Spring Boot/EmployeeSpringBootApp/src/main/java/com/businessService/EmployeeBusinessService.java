@@ -36,7 +36,6 @@ public class EmployeeBusinessService {
 	}
 	
 	//custom method impl
-	
 	public List<Employee> getEmployeeByName(String name)
 	{
 		return rep.findByEName(name);
