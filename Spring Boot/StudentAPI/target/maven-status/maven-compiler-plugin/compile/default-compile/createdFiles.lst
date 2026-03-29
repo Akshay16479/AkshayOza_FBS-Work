@@ -1,0 +1,5 @@
+com\demo\StudentAPI\Student.class
+com\demo\StudentAPI\StudentApiApplication.class
+com\demo\StudentAPI\studentRepository.class
+com\demo\StudentAPI\studentService.class
+com\demo\StudentAPI\controllerClass.class
